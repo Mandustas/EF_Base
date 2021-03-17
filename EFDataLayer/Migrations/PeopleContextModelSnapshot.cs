@@ -113,7 +113,7 @@ namespace EFDataLayer.Migrations
             modelBuilder.Entity("EFDataAccessLib.Models.Email", b =>
                 {
                     b.HasOne("EFDataAccessLib.Models.Person", null)
-                        .WithMany("Emails")
+                        .WithMany("EmailsAddresses")
                         .HasForeignKey("PersonId");
                 });
 
@@ -121,7 +121,7 @@ namespace EFDataLayer.Migrations
                 {
                     b.Navigation("Addresses");
 
-                    b.Navigation("Emails");
+                    b.Navigation("EmailsAddresses");
                 });
 #pragma warning restore 612, 618
         }

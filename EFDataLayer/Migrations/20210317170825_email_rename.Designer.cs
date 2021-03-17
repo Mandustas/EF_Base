@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFDataLayer.Migrations
 {
     [DbContext(typeof(PeopleContext))]
-    [Migration("20210316172705_initial_migration")]
-    partial class initial_migration
+    [Migration("20210317170825_email_rename")]
+    partial class email_rename
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -29,19 +29,27 @@ namespace EFDataLayer.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("City")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int?>("PersonId")
                         .HasColumnType("int");
 
                     b.Property<string>("State")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("StreetAddress")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("ZipCode")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("varchar(20)");
 
                     b.HasKey("Id");
 
@@ -58,7 +66,9 @@ namespace EFDataLayer.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("EmailAddress")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<int?>("PersonId")
                         .HasColumnType("int");
@@ -81,10 +91,14 @@ namespace EFDataLayer.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
@@ -101,7 +115,7 @@ namespace EFDataLayer.Migrations
             modelBuilder.Entity("EFDataAccessLib.Models.Email", b =>
                 {
                     b.HasOne("EFDataAccessLib.Models.Person", null)
-                        .WithMany("Emails")
+                        .WithMany("EmailsAddresses")
                         .HasForeignKey("PersonId");
                 });
 
@@ -109,7 +123,7 @@ namespace EFDataLayer.Migrations
                 {
                     b.Navigation("Addresses");
 
-                    b.Navigation("Emails");
+                    b.Navigation("EmailsAddresses");
                 });
 #pragma warning restore 612, 618
         }

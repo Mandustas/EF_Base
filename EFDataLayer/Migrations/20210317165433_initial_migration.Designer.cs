@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFDataLayer.Migrations
 {
     [DbContext(typeof(PeopleContext))]
-    [Migration("20210316184103_add_validation")]
-    partial class add_validation
+    [Migration("20210317165433_initial_migration")]
+    partial class initial_migration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
